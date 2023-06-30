@@ -18,7 +18,7 @@ toc::[]
 
 ---
 
-This is a pipeline providing InstructBLIP multimodal operation for Vicuna family models running on link:https://github.com/oobabooga/text-generation-webui[oobabooga/text-generation-webui].
+This is a pipeline providing link:https://github.com/salesforce/LAVIS/tree/main/projects/instructblip[InstructBLIP] multimodal operation for Vicuna family models running on link:https://github.com/oobabooga/text-generation-webui[oobabooga/text-generation-webui].
 
 ---
 
