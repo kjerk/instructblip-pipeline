@@ -111,7 +111,7 @@ Due to the already heavy VRAM requirements of the respective models, the vision 
 
 === 🔭 Consider List
 * ❔ Allow for GPU inference of the image encoder and projector?
-* ❔ Nuget/WinGet package.
+* ❔ Consider multiple embeddings causing problems and remediations.
 
 [.text-left]
 === 📄 License
