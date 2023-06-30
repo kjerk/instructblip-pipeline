@@ -1,0 +1,125 @@
+= InstructBLIP Pipeline
+ v1.0, 2023-06-30
+:toc: macro
+:toclevels: 2
+:showtitle:
+:includedir: _docs
+:sourcedir: ./src
+:homepage: https://github.com/kjerk/instructblip-pipeline
+
+[.text-center]
+
+image:https://img.shields.io/static/v1?label=license&message=BSD-3-Clause&style=for-the-badge&color=success&logo=readthedocs&logoColor=green&labelColor=black[title="License"] image:https://img.shields.io/static/v1?label=Contributions&message=Welcome&style=for-the-badge&color=success&logo=stackexchange&labelColor=black&color=success[title="License"]
+
+[.text-left]
+toc::[]
+
+== 📝 Overview
+
+---
+
+This is a pipeline providing InstructBLIP multimodal operation for Vicuna family models running on link:https://github.com/oobabooga/text-generation-webui[oobabooga/text-generation-webui].
+
+---
+
+[.text-left]
+=== ⏩ Just let me run the thing
+
+Clone this repo into your extensions/multimodal/pipelines folder and run the server with --multimodal enabled and a preferred pipeline. Use AutoGPTQ to load.
+
+[source, bash]
+
+> cd text-generation-webui
+> cd extensions/multimodal/pipelines
+> git clone https://github.com/kjerk/instructblip-pipeline
+> cd instructblip-pipeline
+> cd ../../../../
+> python server.py --auto-devices --chat --listen --loader autogptq --multimodal-pipeline instructblip-7b
+
+---
+
+=== 👀 Examples
+
+++++
+<a href="./_res/example_1.png">
+    <img src="./_res/example_1.png" width="400px" />
+</a> |
+<a href="./_res/example_2.png">
+    <img src="./_res/example_2.png" width="400px" />
+</a>
+++++
+
+==== ✅ Recommended Settings
+===== Generation Parameter Presets:
+* LLaMA-Precise
+* Big O
+
+=== 💸 Requirements
+* AutoGPTQ loader (ExLlama is not supported for multimodal)
+* No additional dependencies from textgen-webui
+
+[horizontal]
+.VRAM Requirements
+instructblip-7b + vicuna-7b:: *~6GB* VRAM
+instructblip-13b + vicuna-13b:: *11GB* VRAM
+
+The vanilla Vicuna-7b + InstructBLIP just barely runs on a 24GB gpu using huggingface transformers directly, and the 13b at fp16 is too much, thanks to optimization effo[.text-center]rts and Quantized models/AutoGPTQ, on textgen-webui with AutoGTPQ, InstructBLIP and Vicuna can comfortably run on 8GB to 12gb of VRAM. 🙌
+
+---
+
+.Provided Pipelines
+* 'instructblip-7b' for Vicuna-7b family
+* 'instructblip-13b' for Vicuna-13b family
+
+.Tested Working Models
+* instructblip-7b
+** link:https://huggingface.co/TheBloke/vicuna-7B-1.1-GPTQ-4bit-128g[vicuna-7b-v1.1-4bit-128g] (Standard)
+** link:https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ[vicuna-7b-v1.3-4bit-128g]
+** link:https://huggingface.co/TheBloke/airoboros-7b-gpt4-GPTQ[airoboros-gpt4-1.0-7b-4bit-128g]
+** link:https://huggingface.co/TheBloke/wizardLM-7B-GPTQ[wizardLM-7b-4bit-128g]
+* instructblip-13b
+** link:https://huggingface.co/TheBloke/vicuna-13B-1.1-GPTQ-4bit-128g[vicuna-13b-v1.1-4bit-128g] (Standard)
+** link:https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ[vicuna-13b-v1.3-4bit-128g]
+** link:https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GPTQ[airoboros-gpt4-1.4-13b-4bit-128g]
+** link:https://huggingface.co/TheBloke/Nous-Hermes-13B-GPTQ[nous-hermes-13b-4bit-128g]
+** link:https://huggingface.co/mindrage/Manticore-13B-Chat-Pyg-Guanaco-GPTQ-4bit-128g.no-act-order.safetensors[Manticore-Chat-Pyg-Guanaco-4bit-128g]
+** link:https://huggingface.co/TheBloke/gpt4-x-vicuna-13B-GPTQ[gpt4-x-vicuna-13b-4bit-128g]
+** vicuna-13b-v0-4bit-128g (Outmoded)
+
+.Non-Working Models
+* wizard-vicuna-13b-4bit-128g
+
+=== 🖥️ Inference
+Due to the already heavy VRAM requirements of the respective models, the vision encoder and projector are kept on CPU and are relatively quick, while the Qformer is moved to GPU for speed.
+
+=== 🔗 Links
+* image:https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png[width=24]/link:/oobabooga/text-generation-webui[oobabooga/text-generation-webui]
+* image:https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png[width=24] link:https://github.com/salesforce/LAVIS/tree/main/projects/instructblip[/salesforce/LAVIS]
+* image:https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.png[width=24] link:https://huggingface.co/Salesforce[/Salesforce] (Fullsize reference Vicuna 1.1 models)
+* image:https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.png[width=24] link:https://huggingface.co/TheBloke[/TheBloke]
+
+=== 📚 References
+* link:https://arxiv.org/abs/2305.06500[arxiv.org - InstructBLIP paper]
+
+
+---
+
+=== ☑️ TODO List
+* ✅ Full readme doc
+* ✅ Add demonstration images
+* ☐ Eat something tasty
+
+=== 🔭 Consider List
+* ❔ Allow for GPU inference of the image encoder and projector?
+* ❔ Nuget/WinGet package.
+
+[.text-left]
+=== 📄 License
+
+This pipeline echoes through the link:https://github.com/salesforce/LAVIS/blob/47deb6c/LICENSE.txt[LAVIS] license and is published under the link:https://choosealicense.com/licenses/bsd-3-clause/[BSD 3-Clause OSS license].
+
+---
+
+image:https://img.shields.io/static/v1?label=discord&message=TheBloke AI&style=for-the-badge&color=success&logo=discord&logoColor=green&labelColor=black[title="License", link="https://discord.gg/theblokeai"]
+
+image:https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white[link="https://github.com/kjerk"]
