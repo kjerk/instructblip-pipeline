@@ -63,7 +63,7 @@ Clone this repo into your extensions/multimodal/pipelines folder and run the ser
 instructblip-7b + vicuna-7b:: *~6GB* VRAM
 instructblip-13b + vicuna-13b:: *11GB* VRAM
 
-The vanilla Vicuna-7b + InstructBLIP just barely runs on a 24GB gpu using huggingface transformers directly, and the 13b at fp16 is too much, thanks to optimization effo[.text-center]rts and Quantized models/AutoGPTQ, on textgen-webui with AutoGTPQ, InstructBLIP and Vicuna can comfortably run on 8GB to 12gb of VRAM. 🙌
+The vanilla Vicuna-7b + InstructBLIP just barely runs on a 24GB gpu using huggingface transformers directly, and the 13b at fp16 is too much, thanks to optimization efforts and Quantized models/AutoGPTQ, on textgen-webui with AutoGTPQ, InstructBLIP and Vicuna can comfortably run on 8GB to 12gb of VRAM. 🙌
 
 ---
 
