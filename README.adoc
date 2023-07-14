@@ -32,8 +32,7 @@ Clone this repo into your extensions/multimodal/pipelines folder and run the ser
 > cd text-generation-webui
 > cd extensions/multimodal/pipelines
 > git clone https://github.com/kjerk/instructblip-pipeline
-> cd instructblip-pipeline
-> cd ../../../../
+> cd ../../../
 > python server.py --auto-devices --chat --listen --loader autogptq --multimodal-pipeline instructblip-7b
 
 ---
